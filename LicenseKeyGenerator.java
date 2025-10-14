@@ -9,13 +9,22 @@ final class LicenseKeyGenerator {
     LicenseKeyGenerator() {
     }
 
-    void generateLicenseKey() throws NoSuchAlgorithmException {
+    void generateLicenseKeyForUser() throws NoSuchAlgorithmException {
 
         LocalDate expirationDate = LocalDate.of(2027, 10, 14);
         String featureFlags = "USER,SUPPORT=YES";
 
         generateLicenseKey(expirationDate, featureFlags);
     }
+
+    void generateLicenseKeyForProUser() throws NoSuchAlgorithmException {
+
+        LocalDate expirationDate = LocalDate.of(2030, 10, 14);
+        String featureFlags = "PRO-USER,SUPPORT=YES";
+
+        generateLicenseKey(expirationDate, featureFlags);
+    }
+    
 
     void generateLicenseKey(LocalDate expirationDate, String featureFlags) throws NoSuchAlgorithmException {
 
