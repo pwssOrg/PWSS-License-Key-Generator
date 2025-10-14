@@ -35,7 +35,7 @@ public class LicenseKeyMenuApp {
 
             switch (choice) {
                 case 1:
-                    createNewLicenseKey();
+                    createNewLicenseKey(scanner);
                     break;
                 case 2:
                     createFinalizedLicenseKey(scanner);
@@ -62,19 +62,26 @@ public class LicenseKeyMenuApp {
         scanner.close();
     }
 
-    private static void createNewLicenseKey() throws NoSuchAlgorithmException {
+    private static void createNewLicenseKey(Scanner scanner) throws NoSuchAlgorithmException {
         System.out.println("Creating new License Key (human readable)...");
 
+         System.out.print("Please enter pro or user: ");
+         String input = scanner.nextLine();
+
         LicenseKeyGenerator licenseKeyGenerator = new LicenseKeyGenerator();
-        licenseKeyGenerator.generateLicenseKey();
+
+        if(input.equalsIgnoreCase("pro"))
+        licenseKeyGenerator.generateLicenseKeyForProUser();
+        else
+        licenseKeyGenerator.generateLicenseKeyForUser();
     }
 
     private static void createFinalizedLicenseKey(Scanner scanner) throws Exception {
-        System.out.print("Please enter the input string: ");
+        System.out.print("Please enter the key from option 1: ");
         String input = scanner.nextLine();
 
         System.out.println("Creating finalized License Key with input: " + input);
-        LicenseManager licenseManager = new LicenseManager();
+        
         licenseManager.createFinalizedLicenceKeyFromHumanReadAbleKey(input);
     }
 
